@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
+const errorHandler=require('./middlewares/errorhandler')
 const middleware=require('./middlewares/loggers')
 const bootcamp = require('./routes/bootcamp');
 const bodyParser = require('body-parser')
@@ -15,5 +16,6 @@ connectDB()
 app.use('/',middleware)
 
 app.use('/api/v1/', bootcamp);
+app.use(errorHandler)
 
 app.listen(process.env.PORT);
